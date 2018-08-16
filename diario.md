@@ -14,4 +14,4 @@ Definitivamente no me ha quedado del todo claro como trabajar con punteros y ref
 
 **Acción tomada:** Siempre pasa.
 
-**Link to work:** [Día 0](https://github.com/Orzzet/codingame/commit/82b3a4a1b842aa9e96c367c0fcf2512f38c8aa03)
+**Código:** [Día 0](https://github.com/Orzzet/codingame/commit/82b3a4a1b842aa9e96c367c0fcf2512f38c8aa03)
