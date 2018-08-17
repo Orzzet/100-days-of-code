@@ -21,7 +21,7 @@ Definitivamente no me ha quedado del todo claro como trabajar con punteros y ref
 **Progreso**: 
 Wood 3 -> Bronze
 
-Comportamiento básico. Sólo toma en cuenta las criaturas y la habilidad Guarda de las criaturas del rival. No toma en cuenta
+Comportamiento básico. Sólo toma en cuenta las criaturas y la habilidad Guarda de las criaturas del rival. No toma en cuenta artefactos ni otras habiliades de criatura.
 
 **Consideraciones:** 
 
