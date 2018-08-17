@@ -11,6 +11,3 @@ Proyecto 1: Bot de un juego de cartas para el juego de CodinGame "Legends of Cod
 * [Diario](diario.md)
 * [Reglas](reglas.md)
 * [Preguntas frecuentes](preguntas_frecuentes.md)
-
-## Traducciones
-[english](intl/en/README.md)
