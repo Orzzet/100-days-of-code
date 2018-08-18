@@ -6,7 +6,10 @@
 
 **Consideraciones:** 
 
-Para almacenar las cartas en las distintas partes del campo he decidido hacerlo con unerdered_map, usando la instanceId de la carta como clave. He tenido en cuenta la complejidad de 4 operaciones: insert (constante), erase (constante), find (constante) e iteraciones (linear). Creo que unordered_set cumpliría la misma función, pero veo más intuitivo usar un map.
+Para almacenar las cartas en las distintas partes del campo he decidido hacerlo con unerdered_map, usando la instanceId de la carta como clave. He tenido en cuenta la complejidad de 4 operaciones: insert (constante), erase (constante), ~~find~~ operador[], at (constante) e iteraciones (linear). Creo que unordered_set cumpliría la misma función, pero veo más intuitivo usar un map.
+
+*nota: Me había confundido con find, parece ser que find devuelve un iterator hasta el elemento que se le pasa o al último elemento si no lo encuentra. A mi el que me interesaba era el de acceso a un elemento, que es con el operador[] o función at*
+
 
 No me ha quedado claro cual es la mejor forma para concatenar strings o si siquiera es necesario hacerlo, por ahora estoy escribiendo directamente en el output.
 
@@ -19,7 +22,7 @@ Definitivamente no me ha quedado del todo claro como trabajar con punteros y ref
 ### Día 1: 16/08/2018
 
 **Progreso**: 
-Wood 3 -> Bronze
+Wood3 -> Bronze
 
 Comportamiento básico. Sólo toma en cuenta las criaturas y la habilidad Guarda de las criaturas del rival. No toma en cuenta artefactos ni otras habiliades de criatura.
 
@@ -37,3 +40,27 @@ Play: Juega la/s carta/s con mayor coste posible.
 Attack: Ataca basandose en la diferencia de valor, teniendo en cuenta si el oponente tiene Guarda.
 
 **Código:** [Día 1](https://github.com/Orzzet/codingame/commit/f663dbbf2f61b2e010c99692dde0d9e4481aebc1)
+
+### Día 2: 17/08/2018
+
+**Progreso**:
+Wood3
+
+Conseguida la creación de nuevos estados aunque sin implementar el motor del juego. Nuevas clases State y StateManager.
+
+**Consideraciones:**
+
+He metido toda la información necesaria para el juego en la clase Player. Cada Player guarda las cartas de su mano y las cartas en juego, además de la vida, mana, runas, nº cartas en deck y nº en mano. Debido a esto para pasar de un estado a otro lo que tengo que hacer es copiar los objetos player1 y player2 y efectuarle los cambios de todo el turno. El nuevo estado tendrá estos nuevos objetos player1 y player2 con los cambios hechos.
+
+Mi principal problema era encontrar un buen método para copiar los objetos y que las copias de todos sus atributos (incluida cartas individuales) ocupen nuevas posiciones de memoria. He optado por modificar el constructor copia de Card y Player, que modifica el comportamiento del operador = . *"Card* newCard = oldCard" disparará el constructor copia*
+
+*nota: me he llevado un buen tiempo detrás de un error al hacer la copia. Tenía que crear el constructor por defecto "Card() = default"*
+
+Para ahorrar un poco de memoria y procesamiento, los atributos de la clase Card que no varían (cardNumber, instanceId, cardType...) ahora son punteros. Al hacer una copia de una carta, simplemente se pasa el puntero sin necesidad de almacenar el dato otra vez. En un futuro sería buena idea hardcodear todas las cartas en el programa en un map con cardNumber como clave, entonces ni siquiera sería necesario almacenar los punteros.
+
+**Acción tomada:** *igual que en el día anterior*
+Pick: Elige carta basandose en coste vs ataque y defensa (valor). 
+Play: Juega la/s carta/s con mayor coste posible. 
+Attack: Ataca basandose en la diferencia de valor, teniendo en cuenta si el oponente tiene Guarda.
+
+**Código:** [Día 2](https://github.com/Orzzet/codingame/commit/3b3017de6a0003024920cdb3a9db2ad8974bc0d0)
