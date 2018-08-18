@@ -35,6 +35,7 @@ De no ser por la ayuda del IDE (CLion de Jetbrains), me habría costado mucho m�
 No estoy seguro de que no haya memory leaks. Por ahora no es un problema ya que el programa corre durante muy poco tiempo y no hay limitaciones de memoria, pero es algo que tendré que revisitar constantemente hasta asegurarme.
 
 **Acción tomada:** 
+
 Pick: Elige carta basandose en coste vs ataque y defensa (valor). 
 
 Play: Juega la/s carta/s con mayor coste posible. 
