@@ -36,7 +36,9 @@ No estoy seguro de que no haya memory leaks. Por ahora no es un problema ya que 
 
 **Acción tomada:** 
 Pick: Elige carta basandose en coste vs ataque y defensa (valor). 
+
 Play: Juega la/s carta/s con mayor coste posible. 
+
 Attack: Ataca basandose en la diferencia de valor, teniendo en cuenta si el oponente tiene Guarda.
 
 **Código:** [Día 1](https://github.com/Orzzet/codingame/commit/f663dbbf2f61b2e010c99692dde0d9e4481aebc1)
@@ -59,8 +61,11 @@ Mi principal problema era encontrar un buen método para copiar los objetos y qu
 Para ahorrar un poco de memoria y procesamiento, los atributos de la clase Card que no varían (cardNumber, instanceId, cardType...) ahora son punteros. Al hacer una copia de una carta, simplemente se pasa el puntero sin necesidad de almacenar el dato otra vez. En un futuro sería buena idea hardcodear todas las cartas en el programa en un map con cardNumber como clave, entonces ni siquiera sería necesario almacenar los punteros.
 
 **Acción tomada:** *igual que en el día anterior*
+
 Pick: Elige carta basandose en coste vs ataque y defensa (valor). 
+
 Play: Juega la/s carta/s con mayor coste posible. 
+
 Attack: Ataca basandose en la diferencia de valor, teniendo en cuenta si el oponente tiene Guarda.
 
 **Código:** [Día 2](https://github.com/Orzzet/codingame/commit/3b3017de6a0003024920cdb3a9db2ad8974bc0d0)
