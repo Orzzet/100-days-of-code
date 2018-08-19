@@ -70,3 +70,30 @@ Play: Juega la/s carta/s con mayor coste posible.
 Attack: Ataca basandose en la diferencia de valor, teniendo en cuenta si el oponente tiene Guarda.
 
 **Código:** [Día 2](https://github.com/Orzzet/codingame/commit/3b3017de6a0003024920cdb3a9db2ad8974bc0d0)
+
+### Día 3: 18/08/2018
+
+**Progreso**:
+Wood3
+
+Implementada lista de acciones posibles para el jugador 1 dado un estado del juego.
+
+**Consideraciones**
+
+He implementado la función "unordered_set<string> legalActions(State* s)" que devuelve una lista de acciones posibles para el jugador 1. Para empezar sólo quiero simular las acciones posibles en un turno (o quizás dos) sin tener en cuenta el rival.
+  
+Además he añadido el atributo "canAttack" a las cartas para tener en cuenta el mareo de invocación y si esa carta ha atacado ya. Además si esa carta tiene ataque 0 obligarla a que no pueda atacar poniendo "canAttack" a false. Mi plan es jugar los items primero, luego criaturas y luego atacar.
+
+*Nota: También es necesario añadir el atributo "turnPlayed" para que los items no modifiquen de forma erronea canAttack.*
+
+Este atributo para las cartas que sean items no tiene sentido, pero no quiero tener items y criaturas en clases separadas solo por este atributo, creo que complicaría las cosas.
+ 
+**Acción tomada:** *igual que en el día anterior*
+
+Pick: Elige carta basandose en coste vs ataque y defensa (valor). 
+
+Play: Juega la/s carta/s con mayor coste posible. 
+
+Attack: Ataca basandose en la diferencia de valor, teniendo en cuenta si el oponente tiene Guarda.
+
+**Código:** [Día 3](https://github.com/Orzzet/codingame/commit/a3b596e7cec92b4f34f7aad845b4164e7312b7ce)
