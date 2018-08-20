@@ -47,7 +47,7 @@ Attack: Ataca basandose en la diferencia de valor, teniendo en cuenta si el opon
 ### Día 2: 17/08/2018
 
 **Progreso**:
-Wood3
+Bronze
 
 Conseguida la creación de nuevos estados aunque sin implementar el motor del juego. Nuevas clases State y StateManager.
 
@@ -74,7 +74,7 @@ Attack: Ataca basandose en la diferencia de valor, teniendo en cuenta si el opon
 ### Día 3: 18/08/2018
 
 **Progreso**:
-Wood3
+Bronze
 
 Implementada lista de acciones posibles para el jugador 1 dado un estado del juego.
 
@@ -97,3 +97,40 @@ Play: Juega la/s carta/s con mayor coste posible.
 Attack: Ataca basandose en la diferencia de valor, teniendo en cuenta si el oponente tiene Guarda.
 
 **Código:** [Día 3](https://github.com/Orzzet/codingame/commit/a3b596e7cec92b4f34f7aad845b4164e7312b7ce)
+
+### Día 4: 18/08/2018
+
+**Progreso**:
+Bronze
+
+Motor de la simulación completo. Función de evaluación. cambiado getValue(). ~1000 sims/ms? Falta el motor de búsqueda.
+
+**Consideraciones**
+
+En la clase Card, he cambiado el nombre del método getValue() a getPickValue(), que te de el valor de la carta en la fase de draft. Falta implementar en la clase Card el método getBoardValue() (o un nombre similar) para que devuelva el valor de la carta una vez jugada (el coste de la carta y los efectos de cuando entra en juego serían irrelevantes)
+
+He implementado una función evaluación que, dado un estado del juego, lo puntúa. A mayor puntuación, mejor es ese estado para el jugador 1. Pasa muchas cosas por alto, como por ejemplo el valor de las criaturas en juego ya que sólo tiene en cuenta el nº de criaturas en cada lado del campo.
+
+He implementado un motor básico del juego. Dado un estado del juego y una acción a tomar por el jugador 1, devuelve un nuevo estado con la modificación producida por esa acción. Parece ser que al menos la mayoría funciona correctamente. Cuando implemente un comportamiento más complejo del bot seguiré mejorandolo.
+
+Y ya por fin, he comprobado la eficacia de c++! He cronometrado el tiempo que tardo en hacer las simulaciones. El método ha sido el siguiente:
+
+- Cada turno hago una lista de todas las jugadas posibles que puedo hacer ese turno.
+- Por cada acción posible hago 1000 simulaciones.
+
+Parece ser que por ahora el programa tiene la capacidad de hacer algo menos de 1000 simulaciones por ms. Eso es mucho más que lo que  conseguí en python en el concurso CodeOfKutulu, que conseguí unas 1000 sims en 50ms haciendo muchas concesiones. Es importante notar que he usado optimizaciones de c++, lo cual me ha hecho multiplicar el rendimiento por 5 aproximadamente. Las optimizaciones son:
+
+```cpp
+#pragma GCC optimize("-O3", "inline", "omit-frame-pointer", "unroll-loops")
+```
+"-O3" es la más importante, activa [muchas optimizaciones](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html) distintas, que por lo que he entendido, te permiten usar clases, funciones y estructuras de datos de la Standard Template Library (STL, por ejemplo unordered_map y unordered_set) de una forma eficiente.
+
+**Acción tomada:** 
+
+Pick: Elige carta basandose en un valor calculado de la carta, función getPickValue().
+
+Play: Juega la/s carta/s con mayor coste posible. 
+
+Attack: Ataca basandose en la diferencia de valor dado por la función getPickValue(). Esto no tiene mucho sentido, pero aún no tengo implementada la función getBoardValue().
+
+**Código:** [Día 4](https://github.com/Orzzet/codingame/commit/1d92fe16e9655ee9f21c5e96c136265176571627)
