@@ -98,7 +98,7 @@ Attack: Ataca basandose en la diferencia de valor, teniendo en cuenta si el opon
 
 **Código:** [Día 3](https://github.com/Orzzet/codingame/commit/a3b596e7cec92b4f34f7aad845b4164e7312b7ce)
 
-### Día 4: 18/08/2018
+### Día 4: 19/08/2018
 
 **Progreso**:
 Bronze
@@ -134,3 +134,37 @@ Play: Juega la/s carta/s con mayor coste posible.
 Attack: Ataca basandose en la diferencia de valor dado por la función getPickValue(). Esto no tiene mucho sentido, pero aún no tengo implementada la función getBoardValue().
 
 **Código:** [Día 4](https://github.com/Orzzet/codingame/commit/1d92fe16e9655ee9f21c5e96c136265176571627)
+
+### Día 5: 20/08/2018
+
+**Progreso:**
+
+Bronze (top 100, falta poco)
+
+Simulaciones para el turno actual.
+
+**Consideraciones:**
+
+He implementado un motor de búsqueda que, por ahora, solo llegar a consumir 3ms en total (3% del tiempo que tengo) por lo que tengo bastante espacio para hacer más cálculos.
+
+Para ello construyo un árbol de acciones tomadas, expandiendo sólo las mejores x acciones. Sé que una acción es mejor que otra comparando sus puntuaciones dadas por la función de evaluación a la que le paso el estado resultante de tomar la acción. Para expandir sólo las mejores x acciones guardo las acciones a expandir en un set y cuando alcanza un tamaño mayor de x le quito el último elemento. 
+
+*Hay que tener en cuenta que en c++ los sets son ordenados*
+
+Cuando tengo el árbol completo, busco en cada nodo para ver cual tiene la mejor puntuación y me quedo con esa rama de acciones hacia arriba.
+
+Tengo que mejorar el la fase de draft para elegir mejores cartas (creo que la única forma es ir por cada carta una a una y puntuarla).
+
+Tengo que ampliar la búsqueda a acciones de turnos futuros, simulando un comportamiento para el rival (al menos de ataque).
+
+Tengo que mejorar la función de evaluación, ya que ahora hay muchas cosas que no tiene en cuenta. Aunque veo que aún así toma buenas decisiones, por lo que tengo que mejorar esto con cuidado.
+
+Aquí se pueden ver dos partidas que el bot ha jugado: [partida 1](https://www.codingame.com/replay/334800827), [partida 2](https://www.codingame.com/share-replay/334708229)
+
+**Acción tomada:** 
+
+Pick: Elige carta basandose en un valor calculado de la carta, función getPickValue().
+
+Play y Attack: El bot elige de un árbol de decisiones basandose en la función de evaluación.
+
+**Código:** [Día 5](https://github.com/Orzzet/codingame/commit/89da87ab0c4b46177fdf92524864126a381063f3)
