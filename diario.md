@@ -1,5 +1,6 @@
 # 100 Days Of Code - Log
 
+
 ### Día 0: 15/08/2018
 
 **Progreso**: Lectura de variables del input, clases Card y Player.
@@ -44,6 +45,7 @@ Attack: Ataca basandose en la diferencia de valor, teniendo en cuenta si el opon
 
 **Código:** [Día 1](https://github.com/Orzzet/codingame/commit/f663dbbf2f61b2e010c99692dde0d9e4481aebc1)
 
+
 ### Día 2: 17/08/2018
 
 **Progreso**:
@@ -71,6 +73,7 @@ Attack: Ataca basandose en la diferencia de valor, teniendo en cuenta si el opon
 
 **Código:** [Día 2](https://github.com/Orzzet/codingame/commit/3b3017de6a0003024920cdb3a9db2ad8974bc0d0)
 
+
 ### Día 3: 18/08/2018
 
 **Progreso**:
@@ -97,6 +100,7 @@ Play: Juega la/s carta/s con mayor coste posible.
 Attack: Ataca basandose en la diferencia de valor, teniendo en cuenta si el oponente tiene Guarda.
 
 **Código:** [Día 3](https://github.com/Orzzet/codingame/commit/a3b596e7cec92b4f34f7aad845b4164e7312b7ce)
+
 
 ### Día 4: 19/08/2018
 
@@ -135,6 +139,7 @@ Attack: Ataca basandose en la diferencia de valor dado por la función getPickVa
 
 **Código:** [Día 4](https://github.com/Orzzet/codingame/commit/1d92fe16e9655ee9f21c5e96c136265176571627)
 
+
 ### Día 5: 20/08/2018
 
 **Progreso:**
@@ -169,6 +174,7 @@ Play y Attack: El bot elige de un árbol de decisiones basandose en la función 
 
 **Código:** [Día 5](https://github.com/Orzzet/codingame/commit/89da87ab0c4b46177fdf92524864126a381063f3)
 
+
 ### Día 6: 21/08/2018
 
 Bronze -> Silver (#2 en silver, falta poco para gold)
@@ -192,3 +198,41 @@ Pick: Elige carta basandose en un valor elegido por mí, función getPickValue()
 Play y Attack: El bot elige de un árbol de decisiones basandose en la función de evaluación. Sólo tiene en cuenta el turno actual.
 
 **Código:** Día 6 (Voy a ocultar el código hasta que termine el concurso)
+
+
+### Día 7: 22/08/2018
+
+Silver -> Gold 
+
+#5 en gold y #84 con leyenda! de 2146 participantes!
+
+Si puedo entrar en leyenda antes de que termine el concurso en 2 días estaría muy bien, pero ya con esto he cumplido :D
+
+Cambios pequeños en draft y en la función de evaluación.
+
+**Consideraciones:**
+
+Me he dado cuenta de que la fase de draft es extremadamente importante. Mientras más tiempo le dedique a mejorar las puntuaciones individuales de las cartas, más alto voy a llegar. He implementado correctamente la curva de mana, pero el mérito es principalmente de las puntuaciones individuales.
+
+También he modificado un poco la función de evaluación. Ahora tiene en cuenta más cosas. Por ejemplo puntúa de forma muy negativa si tu mesa está vacía o positiva si la mesa de tu rival está vacía. También tiene en cuenta el ataque total de la mesa rival y la compara con tu vida actual + la defensa de las criaturas con guarda, puntuando de forma muy negativa (como si hubiera perdido) si el ataque rival es mayor.
+
+Creqo que mejorar estos dos factores son los que me pueden hacer entrar en leyenda.
+
+He intentado ampliar la búsqueda para que compruebe que ocurrirá en turnos posteriores, la idea era la siguiente:
+
+- Obtengo las mejores x jugadas que puedo hacer en mi turno (lo estaba probando con 10 jugadas)
+- Por cada jugada, paso el turno al oponente y se comprueba la mejor jugada que puede hacer en respuesta (solamente se tiene en cuenta las criaturas que tiene en juego, ya que no se cuales son las cartas en su mano).
+- Por cada jugada enemiga, me paso el turno y compruebo la mejor jugada que puedo hacer en respuesta.
+- Compruebo cual estas últimas jugadas mias tiene mejor puntuación y compruebo cojo la jugada de mi turno anterior que la ha originado.
+
+Conseguí hacerlo funcionar (creo que funcionaba bien), pero acababa haciendo una jugada peor que si hubiese utilizado solo la predicción de mi turno.
+
+Si solo utilizo la preddición de mi turno puedo hacer uso de todo el tiempo para obtener la mejor jugada. Si intento predecir 2 turnos en el futuro (el rival y el segundo mio), lo más probable es que no encuentre la mejor jugada ni para el turno del rival ni para el segundo mio, por lo que los resultados no son muy fiables. Quizás simplifique la predicción del turno del rival y lo intente de nuevo, pero creo que con mejorar la función de evaluación va a ser suficiente.
+
+**Acción tomada:** 
+
+Pick: Valor individual hardcodeado + curva de mana.
+
+Play y Attack:  Búsqueda en un árbol de decisiones basandose en la función de evaluación. Sólo tiene en cuenta el turno actual.
+
+**Código:** Día 7 (Voy a ocultar el código hasta que termine el concurso)
