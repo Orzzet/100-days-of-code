@@ -153,7 +153,7 @@ Para ello construyo un árbol de acciones tomadas, expandiendo sólo las mejores
 
 Cuando tengo el árbol completo, busco en cada nodo para ver cual tiene la mejor puntuación y me quedo con esa rama de acciones hacia arriba.
 
-Tengo que mejorar el la fase de draft para elegir mejores cartas (creo que la única forma es ir por cada carta una a una y puntuarla).
+Tengo que mejorar la fase de draft para elegir mejores cartas (creo que la única forma es ir por cada carta una a una y puntuarla).
 
 Tengo que ampliar la búsqueda a acciones de turnos futuros, simulando un comportamiento para el rival (al menos de ataque).
 
@@ -165,6 +165,30 @@ Aquí se pueden ver dos partidas que el bot ha jugado: [partida 1](https://www.c
 
 Pick: Elige carta basandose en un valor calculado de la carta, función getPickValue().
 
-Play y Attack: El bot elige de un árbol de decisiones basandose en la función de evaluación.
+Play y Attack: El bot elige de un árbol de decisiones basandose en la función de evaluación. Sólo tiene en cuenta el turno actual.
 
 **Código:** [Día 5](https://github.com/Orzzet/codingame/commit/89da87ab0c4b46177fdf92524864126a381063f3)
+
+### Día 6: 21/08/2018
+
+Bronze -> Silver (#2 en silver, falta poco para gold)
+
+Mejorada la fase de draft, mejorada la función de evaluación, arreglado bugs importantes.
+
+**Consideraciones:**
+
+Lo más importante ha sido arreglar un bug que hacía que, cuando había muchas opciones, no escogía la mejor. Parece ser que el set que decidía que opción expandir, ordenadaba las puntuaciones de menor a mayor. Una puntuación baja significa que la opción es mala. Al alcanzar el set un tamaño mayor al ancho deseado, descartaba las opciones mejores en vez de las peores. Simplemente cambié un `<` por un `>` en la función del operador `<` de la clase PSol.
+
+*Nota: En c++ se pueden modificar los operadores de las clases. Para incluir PSol en un contenedor ordenado he tenido que cambiar el operador `<` (menor que), para que se pueda realizar la comparación `psol1 < psol2`*
+
+Otra cosa que he mejorado ha sido la fase de draft, ya que he puntuado las cartas una a una. Además he intentado añadir una curva, penalizando el pick si ya tengo muchas cartas de ese coste y bonificandolo si tengo muy pocas.
+
+He modificado la función de evaluación. Antes la vida del rival puntuaba 5 veces más que mi propia vida. Creo que esto era un error y ahora tienen la misma puntuación. También he añadido la cantidad total de ataque y defensa de cada parte del campo.
+
+**Acción tomada:** 
+
+Pick: Elige carta basandose en un valor elegido por mí, función getPickValue().
+
+Play y Attack: El bot elige de un árbol de decisiones basandose en la función de evaluación. Sólo tiene en cuenta el turno actual.
+
+**Código:** Día 6 (Voy a ocultar el código hasta que termine el concurso)
